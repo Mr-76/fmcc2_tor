@@ -1,10 +1,17 @@
 from cryptography.fernet import Fernet
 
 class Cliente:
+    """Cliente."""
+
     def __init__(self, mensagem):
+        """__init__.
+
+        :param mensagem:
+        """
         self._mensagem = mensagem
         self._mensagem_encrypt = ""  
     def encrypt(self):
+        """encrypt."""
 
         chave1 = Fernet.generate_key()
         chave1 = Fernet(chave1)
@@ -24,5 +31,9 @@ class Cliente:
         return (chave3,chave2,chave1)
 
     def send(self,nodo):
+        """send.
+
+        :param nodo:
+        """
         nodo.decrypt(self._mensagem_encrypt)
         
