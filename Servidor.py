@@ -8,4 +8,4 @@ class Servidor:
 
     def print_msg(self):
         print("mensagem recebida")
-        print(self._mensagem)
+        print(self._mensagem.decode())

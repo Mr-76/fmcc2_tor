@@ -1,3 +1,5 @@
+from cryptography.fernet import Fernet
+
 class Nodo:
     """Nodo."""
 
@@ -14,8 +16,7 @@ class Nodo:
 
         :param mensagem:
         """
-        self._mensagem  += mensagem + str(self._chave) #decrypt a mensagem
-        print(mensagem)
+        self._mensagem = self._chave.decrypt(mensagem) #decrypt a mensagem
 
     def send(self,nodo):#nodos tb tem esse metodo
         """send.
