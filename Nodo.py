@@ -1,37 +1,53 @@
 from cryptography.fernet import Fernet
 
+
 class Nodo:
     """Nodo."""
 
-    def __init__(self,chave):
+    def __init__(self, chave):
         """__init__.
 
-        :param chave:
+        Construtor do objeto Nodo.
+
+        :param chave:Chave para desencriptar uma
+                      mensagem.
         """
         self._chave = chave
-        self._mensagem = "" # por enquato
+        self._mensagem = ""  # por enquato
 
-    def decrypt(self,mensagem):
+    def decrypt(self, mensagem):
         """decrypt.
 
-        :param mensagem:
+        Metodo desencripta a mensagem
+        com uma chave.
+
+        :param mensagem: Mensagem a desencriptar.
         """
-        self._mensagem = self._chave.decrypt(mensagem) #decrypt a mensagem
+        self._mensagem = self._chave.decrypt(mensagem)
 
-    def send(self,nodo):#nodos tb tem esse metodo
-        """send.
+    def send(self, nodo):
+        """send 
+        Metodo manda a mensagem para
+        um objeto do tipo Nodo.
 
-        :param nodo:
+        :param nodo: Objeo nodo.
         """
         nodo.decrypt(self._mensagem)
- 
-    def print_msg(self):
-        """print_msg."""
-        return self._mensagem
-    def send_server(self,server):
-        """send_server.
 
-        :param server:
+    def print_msg(self):
+        """print_msg.
+        metodo retorna a mensagem do nodo
+        :return: String com mensage de uma nodo.
+        """
+        return self._mensagem
+
+    def send_server(self, server):
+        """send_server.
+        Metodo manda a mensagem que o
+        nodo possui para um objeto
+        servidor.
+
+        :param server: Objeto servidor
         """
         print("mandando para servidor")
         server.receive(self._mensagem)
